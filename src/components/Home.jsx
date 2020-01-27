@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {};
-    }
-    render() {
-        return (
-            <div>You are on the home page</div>
-        )
-    }
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  render () {
+    return (
+      <div>You are on the Home page</div>
+    )
+  }
 }
 
-export default Home;
+export default Home
