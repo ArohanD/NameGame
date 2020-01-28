@@ -10,9 +10,10 @@ function RouteManager (props) {
   const { theme } = useContext(ThemeContext)
 
   const appStyle = {
+    zIndex: -2,
     backgroundColor: theme.baseColor,
     color: theme.primaryText,
-    height: '90vh',
+    height: '100vh',
     fontFamily: theme.primaryFont
   }
 

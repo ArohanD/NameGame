@@ -6,7 +6,6 @@ import ThemeContext from './ThemeContext.jsx'
 
 // CUSTOM THEMEING
 
-// COLORS
 const themes = {
   light: {
     primaryColor: '#5E1DE2',
@@ -26,7 +25,6 @@ const themes = {
   }
 }
 
-// FONTS
 const fonts = {
   primaryFont: 'Lora, serif',
   secondaryFont: 'Poppins, sans-serif'
