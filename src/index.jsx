@@ -6,6 +6,7 @@ import ThemeContext from './ThemeContext.jsx'
 
 // CUSTOM THEMEING
 
+// COLORS
 const themes = {
   light: {
     primaryColor: '#5E1DE2',
@@ -25,8 +26,16 @@ const themes = {
   }
 }
 
-const App = () => {
+// FONTS
+const fonts = {
+  primaryFont: 'Lora, serif',
+  secondaryFont: 'Poppins, sans-serif'
+}
+for (const key in themes) {
+  themes[key] = Object.assign(themes[key], fonts)
+}
 
+const App = () => {
   const [theme, setTheme] = useState(themes.light)
   const toggleTheme = () => {
     const currentTheme = JSON.stringify(theme)
