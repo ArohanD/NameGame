@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
+import ThemeContext from '../ThemeContext.jsx'
 
-class Home extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
+const Home = (props) => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
-  render () {
-    return (
-      <div>You are on the Home page</div>
-    )
-  }
+  return (
+    <div onClick={toggleTheme}>You are on the Home page</div>
+  )
 }
 
 export default Home
