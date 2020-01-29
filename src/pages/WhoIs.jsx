@@ -23,10 +23,22 @@ const WhoIs = (props) => {
   const [score, setScore] = useState(0)
   const [round, setRound] = useState(0)
   const [timeLeft, setTimeLeft] = useState(15)
+  const [currentEmployeeId, setCurrentEmployeeId] = useState(null)
+  const [startGame, setStartGame] = useState(false)
 
-  const runGame = () => {
+  const runGame = (e) => {
+    const peopleQueue = JSON.parse(JSON.stringify(people))
     setCurrentFive(people.slice(0, 5))
+    peopleQueue.splice(0, 5)
+    setPeople(peopleQueue)
   }
+
+  useEffect(() => {
+    if (currentFive.length > 0) {
+      const randomIndex = Math.floor(Math.random() * 4)
+      setCurrentEmployeeId(currentFive[randomIndex].id)
+    }
+  }, [currentFive])
 
   useEffect(() => {
     axios.get('https://willowtreeapps.com/api/v1.0/profiles')
@@ -35,22 +47,24 @@ const WhoIs = (props) => {
       })
       .then((shuffledData) => {
         setPeople(shuffledData)
+        setStartGame(true)
       })
   }, [])
 
   useEffect(() => {
     runGame()
-  }, [people])
+  }, [startGame])
 
   if (!people) return (<div>Loading...</div>)
 
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
       <div>
-        <div style={triangle} />
+        <div style={triangle} onClick={() => runGame()} />
         <h1 className='floating_header'>Who is?</h1>
       </div>
       <GameBox
+        currentEmployeeId={currentEmployeeId}
         people={currentFive}
         score={score}
         round={round}
@@ -96,17 +110,26 @@ const GameBox = (props) => {
     height: '25%',
     backgroundColor: theme.primaryColor,
     color: '#F6F6F6',
-    
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: '2em'
   }
 
-  console.log(props.people)
+  const findEmployeeName = () => {
+    for (const employee of props.people) {
+      if (employee.id === props.currentEmployeeId) {
+        return employee.firstName + ' ' + employee.lastName
+      }
+    }
+  }
+
+  const currentEmployeeName = findEmployeeName()
+
   return (
     <div style={gameboxContainerStyle}>
-      <h2>Matt Matterson</h2>
+      <h2>{currentEmployeeName || 'Loading...'}</h2>
       <div>
         <div style={boxStyle}>
           {
@@ -129,7 +152,7 @@ const Profile = (props) => {
   const imageContainerStyle = {
     width: '100px',
     height: '30%',
-    border: props.person.id === 0 ? `1px solid ${theme.backgroundColor}` : `1px solid ${theme.primaryColor}`,
+    border: `2px solid ${theme.primaryColor}`,
     borderRadius: '15%',
     margin: '2px'
   }
@@ -140,7 +163,7 @@ const Profile = (props) => {
     objectFit: 'cover'
   }
   const profile = props.person
-  console.log(profile)
+
   return (
     <div key={profile.id} style={imageContainerStyle}>
       {
