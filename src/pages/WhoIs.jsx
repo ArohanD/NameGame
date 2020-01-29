@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import axios from 'axios'
 import Navbar from '../components/Navbar.jsx'
 import ThemeContext from '../ThemeContext.jsx'
@@ -23,6 +23,8 @@ const WhoIs = (props) => {
   const [score, setScore] = useState(0)
   const [round, setRound] = useState(0)
   const [timeLeft, setTimeLeft] = useState(15)
+  const timeLeftRef = useRef(timeLeft)
+  timeLeftRef.current = timeLeft
   const [currentEmployeeId, setCurrentEmployeeId] = useState(null)
   const [startGame, setStartGame] = useState(false)
 
@@ -31,11 +33,28 @@ const WhoIs = (props) => {
     setCurrentFive(people.slice(0, 5))
     peopleQueue.splice(0, 5)
     setPeople(peopleQueue)
+    setTimeLeft(15)
+    startTimer()
+  }
+
+  const startTimer = () => {
+    clearInterval(window.timer)
+    window.timer = window.setInterval(() => {
+      setTimeLeft(timeLeftRef.current - 1)
+    }, 1000)
   }
 
   useEffect(() => {
+    if(timeLeft === 0) {
+      runGame()
+      setRound(round + 1)
+    }
+  }, [timeLeft])
+
+  useEffect(() => {
     if (currentFive.length > 0) {
-      const randomIndex = Math.floor(Math.random() * 4)
+      const randomIndex = Math.floor(Math.random() * 5)
+      console.log(randomIndex)
       setCurrentEmployeeId(currentFive[randomIndex].id)
     }
   }, [currentFive])
@@ -55,6 +74,18 @@ const WhoIs = (props) => {
     runGame()
   }, [startGame])
 
+  const checkResponse = (id) => {
+    if (id === currentEmployeeId) {
+      console.log('correct')
+      setScore(score + timeLeft)
+    } else {
+      console.log('incorrect')
+      setScore(score - 5)
+    }
+    runGame()
+    setRound(round + 1)
+  }
+
   if (!people) return (<div>Loading...</div>)
 
   return (
@@ -69,6 +100,7 @@ const WhoIs = (props) => {
         score={score}
         round={round}
         timeLeft={timeLeft}
+        checkResponse={checkResponse.bind(this)}
       />
       <Navbar />
     </div>
@@ -134,7 +166,10 @@ const GameBox = (props) => {
         <div style={boxStyle}>
           {
             props.people.map(person => {
-              return <Profile key={person.id} person={person} />
+              return <Profile
+                key={person.id}
+                person={person}
+                checkResponse={props.checkResponse} />
             })
           }
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
@@ -168,7 +203,11 @@ const Profile = (props) => {
     <div key={profile.id} style={imageContainerStyle}>
       {
         profile.id === 0 ? null
-          : <img src={profile.headshot.url} style={imageStyle} />
+          : <img
+            src={profile.headshot.url}
+            style={imageStyle}
+            onClick={() => props.checkResponse(profile.id)}
+            />
       }
     </div>
   )
