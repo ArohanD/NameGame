@@ -11,6 +11,14 @@ const WhoIs = (props) => {
     backgroundColor: theme.baseColor
   }
 
+  const triangle = {
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    borderTop: `200px solid ${theme.secondaryColor}`,
+    borderRight: '100vw solid transparent'
+  }
+
   useEffect(() => {
     axios.get('https://willowtreeapps.com/api/v1.0/profiles')
       .then(({ data }) => {
@@ -23,8 +31,8 @@ const WhoIs = (props) => {
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
       <div>
-        <div></div>
-        <h1>Who is?</h1>
+        <div style={triangle} />
+        <h1 class='floating_header'>Who is?</h1>
       </div>
       <GameBox />
       <Navbar />
@@ -83,7 +91,7 @@ const ProgressBar = (props) => {
         <p>points</p>
       </div>
       <div>
-        <h2>3/5</h2>
+        <h2>3/15</h2>
         <p>remaining</p>
       </div>
     </div>

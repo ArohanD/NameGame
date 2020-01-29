@@ -9,6 +9,7 @@ body {
 h1, h2, h3, h4, h5, p {
   margin: 0;
   padding: 0;
+  z-index: 1;
 }
 
 #home_grid {
@@ -23,5 +24,12 @@ h1, h2, h3, h4, h5, p {
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 20% 65%;
+  grid-template-rows: 25% 65%;
+}
+
+.floating_header {
+  position: fixed;
+  z-index: 1;
+  top: 10vh;
+  left: 22vw;
 }
