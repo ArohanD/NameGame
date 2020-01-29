@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import ThemeContext from '../ThemeContext.jsx'
 import Button from '../components/Button.jsx'
 import Navbar from '../components/Navbar.jsx'
@@ -61,7 +62,9 @@ const Home = (props) => {
         <div style={circleStyle} />
       </div>
       <div style={buttonHolderStyle}>
-        <Button text='Play' />
+        <Link to='/WhoIs'>
+          <Button text='Play' />
+        </Link>
         <Button text='Leaderboard' />
         <Button text='Flashcards' />
       </div>
