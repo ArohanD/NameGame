@@ -4,8 +4,8 @@ import textSize from '@iconify/icons-fe/text-size'
 import menuIcon from '@iconify/icons-mdi/menu'
 import ThemeContext from '../ThemeContext.jsx'
 
-const Navbar = () => {
-  const { theme } = useContext(ThemeContext)
+const Navbar = (props) => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   const navStyle = {
     backgroundColor: theme.navColor,
@@ -35,8 +35,8 @@ const Navbar = () => {
   return (
     <div style={navStyle}>
       <div style={iconsStyle}>
-        <Icon icon={menuIcon} height={'2.2em'} style={iconStyle} />
-        <Icon icon={textSize} height={'2.2em'} style={iconStyle} />
+        <Icon icon={menuIcon} height='2.2em' style={iconStyle} />
+        <Icon icon={textSize} height='2.2em' style={iconStyle} onClick={toggleTheme} />
       </div>
     </div>
   )
