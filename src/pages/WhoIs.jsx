@@ -44,12 +44,6 @@ const WhoIs = (props) => {
 
   if (!people) return (<div>Loading...</div>)
 
-  // Add spacer with blank profile
-  const bufferedFive = currentFive.concat([{
-    id: 0,
-    headshot: { url: '' }
-  }])
-
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
       <div>
@@ -57,7 +51,7 @@ const WhoIs = (props) => {
         <h1 className='floating_header'>Who is?</h1>
       </div>
       <GameBox
-        people={bufferedFive}
+        people={currentFive}
         score={score}
         round={round}
         timeLeft={timeLeft}
@@ -98,8 +92,8 @@ const GameBox = (props) => {
     position: 'absolute',
     right: 0,
     bottom: 0,
-    width: '30%',
-    height: '30%',
+    minWidth: '25%',
+    height: '25%',
     backgroundColor: theme.primaryColor,
     color: '#F6F6F6',
     
@@ -133,15 +127,17 @@ const Profile = (props) => {
   const { theme } = useContext(ThemeContext)
 
   const imageContainerStyle = {
-    width: '30%',
+    width: '100px',
     height: '30%',
     border: props.person.id === 0 ? `1px solid ${theme.backgroundColor}` : `1px solid ${theme.primaryColor}`,
-    borderRadius: '15%'
+    borderRadius: '15%',
+    margin: '2px'
   }
   const imageStyle = {
     height: '100%',
     width: '100%',
-    borderRadius: '15%'
+    borderRadius: '15%',
+    objectFit: 'cover'
   }
   const profile = props.person
   console.log(profile)
