@@ -1,2 +1,5 @@
 .DS_Store
 node_modules
+.firebase/hosting.ZGlzdA.cache
+firebase-debug.log
+.firebaserc
