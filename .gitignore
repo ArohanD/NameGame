@@ -3,3 +3,4 @@ node_modules
 .firebase/hosting.ZGlzdA.cache
 firebase-debug.log
 .firebaserc
+src/firebase.js
