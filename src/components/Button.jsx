@@ -15,7 +15,7 @@ const Button = (props) => {
   }
 
   return (
-    <button style={buttonStyle}>
+    <button style={buttonStyle} onClick={props.onClick}>
       {props.text}
     </button>
   )

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "webpack --watch",
-    "start": "nodemon server/server.js"
+    "start": "firebase serve --port=6263"
   },
   "author": "Arohan",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "firebase": "^7.7.0",
     "nodemon": "^1.19.1",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"

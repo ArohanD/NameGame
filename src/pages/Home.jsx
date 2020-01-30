@@ -65,7 +65,9 @@ const Home = (props) => {
         <Link to='/WhoIs'>
           <Button text='Play' />
         </Link>
-        <Button text='Leaderboard' />
+        <Link to='/Leaderboard'>
+          <Button text='Leaderboard' />
+        </Link>
         <Button text='Flashcards' />
       </div>
       <Navbar />
