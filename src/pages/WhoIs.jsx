@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/Navbar.jsx'
 import ThemeContext from '../ThemeContext.jsx'
@@ -45,7 +46,7 @@ const WhoIs = (props) => {
   }
 
   useEffect(() => {
-    if(timeLeft === 0) {
+    if (timeLeft === 0) {
       runGame()
       setRound(round + 1)
     }
@@ -87,6 +88,12 @@ const WhoIs = (props) => {
   }
 
   if (!people) return (<div>Loading...</div>)
+  if (round === 15) {
+    return <Redirect push to={{
+      pathname: '/Leaderboard',
+      state: { score: score }
+    }} />
+  }
 
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
@@ -169,7 +176,8 @@ const GameBox = (props) => {
               return <Profile
                 key={person.id}
                 person={person}
-                checkResponse={props.checkResponse} />
+                checkResponse={props.checkResponse}
+              />
             })
           }
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
@@ -207,7 +215,7 @@ const Profile = (props) => {
             src={profile.headshot.url}
             style={imageStyle}
             onClick={() => props.checkResponse(profile.id)}
-            />
+          />
       }
     </div>
   )

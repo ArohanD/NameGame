@@ -5,6 +5,7 @@ import ThemeContext from './ThemeContext.jsx'
 // PAGES
 import Home from './pages/Home.jsx'
 import WhoIs from './pages/WhoIs.jsx'
+import Leaderboard from './pages/LeaderBoard.jsx'
 
 function RouteManager (props) {
   const { theme } = useContext(ThemeContext)
@@ -22,6 +23,7 @@ function RouteManager (props) {
       <div style={appStyle}>
         <Route exact path='/' component={Home} />
         <Route exact path='/WhoIs' component={WhoIs} />
+        <Route exact path='/Leaderboard' component={Leaderboard} />
       </div>
     </Router>
   )
