@@ -25,7 +25,8 @@ const Button = (props) => {
     <button
       tabindex='0'
       style={buttonStyle}
-      onClick={props.onClick} >
+      onClick={props.onClick}
+    >
       {props.text}
     </button>
   )

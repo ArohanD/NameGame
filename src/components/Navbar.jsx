@@ -55,7 +55,8 @@ const Navbar = (props) => {
             <Icon
               icon={menuIcon}
               height='2.2em'
-              style={iconStyle} />
+              style={iconStyle}
+            />
           </Link>
         </div>
         <div tabindex='0' onClick={toggleTheme}>
