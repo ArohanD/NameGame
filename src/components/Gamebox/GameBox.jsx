@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import ThemeContext from '../../ThemeContext.jsx'
 
 const GameBox = (props) => {
+  console.log(window.innerWidth)
   const { theme } = useContext(ThemeContext)
 
   /// STYLE ///
@@ -33,7 +34,7 @@ const GameBox = (props) => {
     position: 'absolute',
     right: 0,
     bottom: 0,
-    minWidth: '25%',
+    minWidth: '75px',
     height: '25%',
     backgroundColor: theme.primaryColor,
     color: theme.name === 'high_contrast' ? '#000000' : '#F6F6F6',
@@ -101,9 +102,13 @@ const Profile = (props) => {
     if (props.fadeAt && props.fadeAt.includes(props.timeLeft)) setOpacity(opacity - 33)
   }, [props.timeLeft])
 
+  let wWidth = window.innerWidth
+  const sideLength = wWidth > 900 ? wWidth / 7 : wWidth / 6
   const imageContainerStyle = {
-    width: '100px',
-    height: '30%',
+    width: sideLength,
+    height: sideLength,
+    minWidth: '100px',
+    minHeight: '30%',
     border: props.highlight ? `4px solid ${theme.secondaryColor}` : `2px solid ${theme.primaryColor}`,
     borderRadius: '15%',
     margin: '2px'
