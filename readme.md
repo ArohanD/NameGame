@@ -11,6 +11,7 @@ There were two additional asks for The Name Game, detailed below:
 ## In Action
 
 [Live demo](https://name-game-b1ca0.firebaseapp.com)
+For testing purposes, you can cheat and look at the console for zero-indexed answers.
 
 # User Stories
 This section describes the features implemented in the app from the viewpoint of the user. 
