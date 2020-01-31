@@ -102,7 +102,7 @@ const Profile = (props) => {
     if (props.fadeAt && props.fadeAt.includes(props.timeLeft)) setOpacity(opacity - 33)
   }, [props.timeLeft])
 
-  let wWidth = window.innerWidth
+  const wWidth = window.innerWidth
   const sideLength = wWidth > 900 ? wWidth / 7 : wWidth / 6
   const imageContainerStyle = {
     width: sideLength,
@@ -130,10 +130,11 @@ const Profile = (props) => {
       {
         profile.id === 0 ? null
           : <img
+            tabindex='0'
             src={profile.headshot.url}
             style={imageStyle}
             onClick={() => props.checkResponse(profile.id)}
-          />
+            />
       }
     </div>
   )
@@ -163,7 +164,7 @@ const ProgressBar = (props) => {
 }
 
 const shuffleArray = (array) => {
-  const copy = array.slice();
+  const copy = array.slice()
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]]
