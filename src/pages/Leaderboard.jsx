@@ -72,6 +72,14 @@ const Leaderboard = (props) => {
     justifyContent: 'space-around'
   }
 
+  const labelStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '80px'
+  }
+
   /// STATE ///
   const [scores, setScores] = useState([])
   const [userName, setUserName] = useState('anon')
@@ -113,13 +121,14 @@ const Leaderboard = (props) => {
             <p>points</p>
           </div>
           <div style={submitFlex}>
-            <p>Leave your initials and submit to the leaderbord:</p>
-            <input onChange={(e) => parseInput(e)} />
+            <label style={labelStyle}>Leave your initials and submit to the leaderbord:
+              <input onChange={(e) => parseInput(e)} />
+            </label>
             <Button text='Submit Score' onClick={() => submitScore(userScore)} />
             <Button text='Leaderboard' onClick={() => getScores()} />
           </div>
         </div>
-        <div style={humaaansPosition} >
+        <div style={humaaansPosition}>
           <MenuHumaaans />
         </div>
         <Navbar history={props.history} />
@@ -143,7 +152,7 @@ const Leaderboard = (props) => {
               }
             </div>
           </div>
-          <div style={humaaansPosition} >
+          <div style={humaaansPosition}>
             <MenuHumaaans />
           </div>
           <Navbar />
