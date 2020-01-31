@@ -121,7 +121,7 @@ const Leaderboard = (props) => {
             <p>points</p>
           </div>
           <div style={submitFlex}>
-            <label style={labelStyle}>Leave your initials and submit to the leaderbord:
+            <label style={labelStyle}>Leave your initials and submit to the leaderboard:
               <input onChange={(e) => parseInput(e)} />
             </label>
             <Button text='Submit Score' onClick={() => submitScore(userScore)} />

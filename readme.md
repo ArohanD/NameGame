@@ -96,6 +96,7 @@ With a little more time, here's what I would have added/completed:
 # Known Bugs
 - Some links and ids in the provided data are missing, this can cause blank photos to show up or in the case of missing ids, incorrect fading.
 - At some resolutions, the timer will overlap with the last profile. Although I was able to solve this with a buffer profile previously, I chose to revert to find a more elegant solution. 
+- Browser support for Chrome and Firefox. Safari works minus some features. 
 
 # Get started
 
