@@ -8,6 +8,7 @@ import ThemeContext from './ThemeContext.jsx'
 
 const themes = {
   light: {
+    name: 'light',
     primaryColor: '#5E1DE2',
     secondaryColor: '#B8F2D6',
     navColor: '#6CD9F3',
@@ -16,12 +17,22 @@ const themes = {
     primaryText: '#000000'
   },
   dark: {
+    name: 'light',
     primaryColor: '#5E1DE2',
     secondaryColor: '#5E1DE2',
     navColor: '#5E1DE2',
     baseColor: '#2E2E2E',
     titleColor: '#F6F6F6',
     primaryText: '#F6F6F6'
+  },
+  highContrast: {
+    name: 'high_contrast',
+    primaryColor: '#CCFFFF',
+    secondaryColor: '#00FF00',
+    navColor: '#CCFFFF',
+    baseColor: '#000000',
+    titleColor: '#CCFFFF',
+    primaryText: '#CCFFFF'
   }
 }
 
@@ -35,11 +46,18 @@ for (const key in themes) {
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light)
+  const [themeIndex, setThemeIndex] = useState(0)
+
   const toggleTheme = () => {
-    const currentTheme = JSON.stringify(theme)
-    const newState = currentTheme === JSON.stringify(themes.light) ? themes.dark : themes.light
-    setTheme(newState)
+    const themeKeys = Object.keys(themes)
+    if (themeIndex === 2) {
+      setThemeIndex(0)
+    } else {
+      setThemeIndex(themeIndex + 1)
+    }
+    setTheme(themes[themeKeys[themeIndex]])
   }
+
   const defaultContext = {
     theme,
     toggleTheme

@@ -25,12 +25,13 @@ const Home = (props) => {
     display: 'flex',
     flexDirection: 'column',
     gridColumn: '3 / 7',
-    gridRow: '2 / 4',
-    justifyContent: 'space-around',
+    gridRow: '2 / 3',
+    justifyContent: 'space-between',
     alignItems: 'center'
   }
 
   const titleHolder = {
+    marginTop: '15vh',
     maxWidth: '330px',
     alignSelf: 'center',
     gridColumn: '2 / 8',

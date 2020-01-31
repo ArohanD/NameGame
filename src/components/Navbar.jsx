@@ -8,7 +8,6 @@ import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 const Navbar = (props) => {
   const { theme, toggleTheme } = useContext(ThemeContext)
-  console.log(props)
 
   /// STYLE ///
   const navStyle = {
@@ -33,11 +32,10 @@ const Navbar = (props) => {
   }
 
   const iconStyle = {
-    color: '#F6F6F6'
+    color: theme.name !== 'high_contrast' ? '#F6F6F6' : '#000000'
   }
 
   const keyPressHandler = (key) => {
-    console.log(key)
     if (key === 'esc') {
       props.history.push('/')
     } else if (key === 'ctrl+a') {
