@@ -47,7 +47,7 @@ const Leaderboard = (props) => {
           <Button text='Submit Score' onClick={() => submitScore(userScore)} />
           <Button text='Leaderboard' onClick={() => getScores()} />
         </div>
-        <Navbar />
+        <Navbar history={props.history} />
       </div>
     )
   } else {

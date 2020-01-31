@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeContext from '../ThemeContext.jsx'
 import Button from '../components/Button.jsx'
 import Navbar from '../components/Navbar.jsx'
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 const Home = (props) => {
   const { theme } = useContext(ThemeContext)
 
+  /// STYLE ///
   const circleStyle = {
     height: '200px',
     width: '200px',
@@ -24,7 +26,8 @@ const Home = (props) => {
     flexDirection: 'column',
     gridColumn: '3 / 7',
     gridRow: '2 / 4',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 
   const titleHolder = {
@@ -52,8 +55,40 @@ const Home = (props) => {
     margin: 0
   }
 
+  const [interactionIndex, setInteractionIndex] = useState(-1)
+
+  const keyPressHandler = (key) => {
+    if (key === 'left' || key === 'up') {
+      if (interactionIndex <= 0) {
+        setInteractionIndex(2)
+      } else {
+        setInteractionIndex(interactionIndex - 1)
+      }
+    } else if (key === 'right' || key === 'down') {
+      if (interactionIndex >= 2) {
+        setInteractionIndex(0)
+      } else {
+        setInteractionIndex(interactionIndex + 1)
+      }
+    }
+
+    if (key === 'space') {
+      if (interactionIndex === 0) {
+        props.history.push('/WhoIs')
+      } else if (interactionIndex === 1) {
+        props.history.push('/Leaderboard')
+      } else if (interactionIndex === 2) {
+        props.history.push('/')
+      }
+    }
+  }
+
   return (
     <div id='home_grid'>
+      <KeyboardEventHandler
+        handleKeys={['all']}
+        onKeyEvent={(key, e) => keyPressHandler(key)}
+      />
       <div style={titleHolder}>
         <div style={titleContainerStyle}>
           <div>THE</div>
@@ -63,14 +98,22 @@ const Home = (props) => {
       </div>
       <div style={buttonHolderStyle}>
         <Link to='/WhoIs'>
-          <Button text='Play' />
+          <Button
+            text='Play'
+            highlight={interactionIndex === 0} />
         </Link>
         <Link to='/Leaderboard'>
-          <Button text='Leaderboard' />
+          <Button
+            text='Leaderboard'
+            highlight={interactionIndex === 1} />
         </Link>
-        <Button text='Flashcards' />
+        <Link to='/'>
+          <Button
+            text='Flashcards'
+            highlight={interactionIndex === 2} />
+        </Link>
       </div>
-      <Navbar />
+      <Navbar history={props.history} />
     </div>
   )
 }
