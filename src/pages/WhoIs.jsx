@@ -140,7 +140,7 @@ const WhoIs = (props) => {
         onKeyEvent={(key, e) => keyPressHandler(key, e)}
       />
       <div>
-        <div style={triangle} onClick={() => runGame()} />
+        <div style={triangle} />
         <h1 className='floating_header'>Who is?</h1>
       </div>
       <GameBox
