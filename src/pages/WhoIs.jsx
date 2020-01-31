@@ -18,7 +18,8 @@ const WhoIs = (props) => {
     width: 0,
     height: 0,
     borderTop: `200px solid ${theme.secondaryColor}`,
-    borderRight: '100vw solid transparent'
+    borderRight: '100vw solid transparent',
+    display: theme.name === 'high_contrast' ? 'none' : 'inherit'
   }
 
   /// STATE ///
@@ -101,7 +102,8 @@ const WhoIs = (props) => {
       push to={{
         pathname: '/Leaderboard',
         state: { score: score }
-      }} />
+      }}
+    />
   }
 
   const keyPressHandler = (key, e) => {
@@ -135,7 +137,8 @@ const WhoIs = (props) => {
     <div id='WhoIs_grid' style={whoIsPageStyle}>
       <KeyboardEventHandler
         handleKeys={['all']}
-        onKeyEvent={(key, e) => keyPressHandler(key, e)} />
+        onKeyEvent={(key, e) => keyPressHandler(key, e)}
+      />
       <div>
         <div style={triangle} onClick={() => runGame()} />
         <h1 className='floating_header'>Who is?</h1>
@@ -189,7 +192,7 @@ const GameBox = (props) => {
     minWidth: '25%',
     height: '25%',
     backgroundColor: theme.primaryColor,
-    color: '#F6F6F6',
+    color: theme.name === 'high_contrast' ? '#000000' : '#F6F6F6',
 
     display: 'flex',
     alignItems: 'center',
@@ -214,12 +217,14 @@ const GameBox = (props) => {
         <div style={boxStyle}>
           {
             props.people.map((person, i) => {
-              return <Profile
-                highlight={props.selectedProfile === i}
-                key={person.id}
-                person={person}
-                checkResponse={props.checkResponse}
-              />
+              return (
+                <Profile
+                  highlight={props.selectedProfile === i}
+                  key={person.id}
+                  person={person}
+                  checkResponse={props.checkResponse}
+                />
+              )
             })
           }
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
@@ -227,7 +232,8 @@ const GameBox = (props) => {
         <p>Select the profile of your colleague named above. You can also use the LEFT and RIGHT arrow keys to make a selection, and SPACE to confirm</p>
         <ProgressBar
           round={props.round}
-          score={props.score} />
+          score={props.score}
+        />
       </div>
     </div>
   )
@@ -267,7 +273,6 @@ const Profile = (props) => {
 }
 
 const ProgressBar = (props) => {
-
   /// STYLE ///
   const progressContainer = {
     margin: '20px',

@@ -11,6 +11,12 @@ const Button = (props) => {
 
     // new styling
     border: props.highlight ? `2px solid ${theme.secondaryColor}` : 'none',
+    minWidth: '120px',
+    backgroundColor: theme.primaryColor,
+    color: theme.baseColor,
+    fontSize: '1em',
+    padding: '8px 12px',
+    borderRadius: '20px'
 
   }
 
