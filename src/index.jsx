@@ -19,7 +19,7 @@ const themes = {
   dark: {
     name: 'light',
     primaryColor: '#5E1DE2',
-    secondaryColor: '#5E1DE2',
+    secondaryColor: '#a412b1',
     navColor: '#5E1DE2',
     baseColor: '#2E2E2E',
     titleColor: '#F6F6F6',
@@ -46,7 +46,7 @@ for (const key in themes) {
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light)
-  const [themeIndex, setThemeIndex] = useState(0)
+  const [themeIndex, setThemeIndex] = useState(1)
 
   const toggleTheme = () => {
     const themeKeys = Object.keys(themes)

@@ -11,6 +11,7 @@ There were two additional asks for The Name Game, detailed below:
 ## In Action
 
 [Live demo](https://name-game-b1ca0.firebaseapp.com)
+For testing purposes, you can cheat and look at the console for zero-indexed answers.
 
 # User Stories
 This section describes the features implemented in the app from the viewpoint of the user. 
@@ -72,7 +73,7 @@ Why not a hybrid approach? I did try this but it gets messy with overwrites and 
 #### Accessibility Integration and Testing
 The high contrast theme is close to meeting the highest specification according to the [WCAG 2.0 contrast formula](https://snook.ca/technical/colour_contrast/colour.html#fg=33FF33,bg=000000). Unfortunately I was unable to integrate font-resizing.
 
-For keyboard navigation, the [react-keyboard-event-handler](https://www.npmjs.com/package/react-keyboard-event-handler) was a new package for me, and an absolute pleasure to use. 
+For keyboard navigation, the [react-keyboard-event-handler](https://www.npmjs.com/package/react-keyboard-event-handler) was a new package for me, and an absolute pleasure to use. Navigation in the hom menu and the game can be done with the arrow keys and spacebar. From anywhere, ctrl+a will toggle the color scheme and escape will send bac to the home page. 
 
 ## Back-End & Deployment
 The Backend for this project started with a Node and Express server, as well as a database skeleton. After assessing the needs fo this project, I decided to go serverless with a Firebase deployment and a Firestore database. This allowed for a quicker deployment process, as well as an easily integrated globally-accessible database of user scores. 
@@ -83,6 +84,8 @@ This project was managed using a simplified git workflow. After the first deploy
 
 Additionally, I managed tickets using github projects.
 ![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitFlow.png)
+
+I also use the standard js linter for the first time. For the most part I like it, but I'm on the fence about the lack of semicolons. 
 
 # Coming Soon
 With a little more time, here's what I would have added/completed:
