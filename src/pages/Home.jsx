@@ -10,6 +10,14 @@ const Home = (props) => {
   const { theme } = useContext(ThemeContext)
 
   /// STYLE ///
+
+  const homeGrid = {
+    height: '95vh',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+    gridTemplateRows: '4fr 2fr 2fr'
+  }
+
   const circleStyle = {
     height: '200px',
     width: '200px',
@@ -86,7 +94,7 @@ const Home = (props) => {
   }
 
   return (
-    <div id='home_grid'>
+    <div style={homeGrid}>
       <KeyboardEventHandler
         handleKeys={['all']}
         onKeyEvent={(key, e) => keyPressHandler(key)}

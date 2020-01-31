@@ -10,10 +10,6 @@ const WhoIs = (props) => {
   const { theme } = useContext(ThemeContext)
 
   /// STYLING ///
-  const whoIsPageStyle = {
-    backgroundColor: theme.baseColor
-  }
-
   const triangle = {
     position: 'absolute',
     width: 0,
@@ -21,6 +17,15 @@ const WhoIs = (props) => {
     borderTop: `200px solid ${theme.secondaryColor}`,
     borderRight: '100vw solid transparent',
     display: theme.name === 'high_contrast' ? 'none' : 'inherit'
+  }
+
+  const whoIsGrid = {
+    height: '100vh',
+    width: '100vw',
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '25% 65%',
+    backgroundColor: theme.baseColor
   }
 
   /// STATE ///
@@ -102,7 +107,7 @@ const WhoIs = (props) => {
         pathname: '/Leaderboard',
         state: { score: score }
       }}
-    />
+           />
   }
 
   const keyPressHandler = (key, e) => {
@@ -133,7 +138,7 @@ const WhoIs = (props) => {
   }
 
   return (
-    <div id='WhoIs_grid' style={whoIsPageStyle}>
+    <div style={whoIsGrid}>
       <KeyboardEventHandler
         handleKeys={['all']}
         onKeyEvent={(key, e) => keyPressHandler(key, e)}

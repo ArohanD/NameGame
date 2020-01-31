@@ -1,9 +1,9 @@
 # The Name Game
-The Name Game is an app designed to help you learn the names of your colleagues, friends, or any set of people or muppets accessible via an api. The app features a game where you'll be given a name and five headshots to choose from. As the timer ticks down, incorrect answers fade. Don't take too long to choose though, as the number of seconds left on the timer gets added to your score. If you choose the wrong answer, you'll lose 5 points. Once you've played through 15 rounds, the game ends and you can submit your score to a global leaderboard. 
+The Name Game is an app designed to help you learn the names of your colleagues, friends, or any set of people or muppets accessible via an API. The app features a game where you'll be given five headshots and one name to match up to them. As the timer ticks down, incorrect answers fade. Don't take too long to choose though, as the number of seconds left on the timer gets added to your score. If you choose the wrong answer, you'll lose 5 points. Once you've played through 15 rounds, the game ends and you can submit your score to a global leaderboard. 
 
 ### Extra Directions
 There were two additional asks for The Name Game, detailed below:
-- CSS libraries and preprocessors were not permitted, so everything is designed with css-in-js.
+- CSS libraries and preprocessors were not permitted, so everything is designed with CSS-in-JS.
 - The app should accommodate accessibility features. As the game is inherently visual, I accommodated for two main groups:
   - Users who prefer not to use mouse input can navigate the entire app with their keyboards.
   - Users with impaired vision can benefit from different themeings, including dark mode and high-contrast.
@@ -11,22 +11,26 @@ There were two additional asks for The Name Game, detailed below:
 ## In Action
 
 [Live demo](https://name-game-b1ca0.firebaseapp.com)
+
+![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/Clipped.2020-01-31%2005_03_54.gif)
+![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/Screen%20Recording%202020-01-31%20at%204.40.23%20AM.2020-01-31%2005_07_17.gif)
+
 For testing purposes, you can cheat and look at the console for zero-indexed answers.
 
 # User Stories
 This section describes the features implemented in the app from the viewpoint of the user. 
 
-## Implemented:
-- As a user, I should be able to see a colleagues name, and test if I can recognize their photo.
+### Implemented:
+- As a user, I should be able to see a colleague's name and test if I can recognize their photo.
 - As a user, I should be able to measure my progress with a score. 
 - As a user, I should be able to see the top scores amongst my colleagues.
 - As a user, I should be able to submit my initials with my score.
 - As a user, I'd like hints as I struggle to identify the right colleague.
 
 
-## Accessibility-Focused Features:
+### Accessibility-Focused Features:
 - As a user, I should be able to navigate the site with my keyboard.
-- As a user, I should have the choice of navigating the site in dark mode or in a high-contrast setting.
+- As a user, I should have the choice of navigating the site in dark mode or a high-contrast setting.
 
 # Stack
 The following technologies were used to build this app.
@@ -59,7 +63,7 @@ The Front-End is built in React, and pages are managed using React Router. Packa
 The app was loosely [prototyped in Figma](https://www.figma.com/file/CA6A2NMK9LKAqnPxGt0fF2/NameGame?node-id=17%3A0), as there was some time-sensitivity, this was mostly to establish the design language. 
 
 #### Mobile-First Design
-This app is best experienced on mobile devices, but it also has a fully featured desktop experience.
+This app is best experienced on mobile devices, but it also has a fully-featured desktop experience.
 
 #### CSS in JS over CSS, why? 
 At first, CSS in JS seems like a bad idea. It pollutes the inspector tool and adds lines to component files. I would argue the contrary, as CSS in JS allowed for some distinct advantages while building this app:
@@ -71,9 +75,11 @@ At first, CSS in JS seems like a bad idea. It pollutes the inspector tool and ad
 Why not a hybrid approach? I did try this but it gets messy with overwrites and I felt as if I was writing more code than necessary.
 
 #### Accessibility Integration and Testing
-The high contrast theme is close to meeting the highest specification according to the [WCAG 2.0 contrast formula](https://snook.ca/technical/colour_contrast/colour.html#fg=33FF33,bg=000000). Unfortunately I was unable to integrate font-resizing.
+The high contrast theme is close to meeting the highest specification according to the [WCAG 2.0 contrast formula](https://snook.ca/technical/colour_contrast/colour.html#fg=33FF33,bg=000000). Unfortunately, I was unable to integrate font-resizing.
 
-For keyboard navigation, the [react-keyboard-event-handler](https://www.npmjs.com/package/react-keyboard-event-handler) was a new package for me, and an absolute pleasure to use. Navigation in the hom menu and the game can be done with the arrow keys and spacebar. From anywhere, ctrl+a will toggle the color scheme and escape will send bac to the home page. 
+For keyboard navigation, the [react-keyboard-event-handler](https://www.npmjs.com/package/react-keyboard-event-handler) was a new package for me, and an absolute pleasure to use. Navigation in the home menu and the game can be done with the arrow keys and spacebar. From anywhere, ctrl+a will toggle the color scheme and escape will send back to the home page. 
+
+![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/Screen%20Recording%202020-01-31%20at%204.41.13%20AM.2020-01-31%2005_08_48.gif)
 
 ## Back-End & Deployment
 The Backend for this project started with a Node and Express server, as well as a database skeleton. After assessing the needs fo this project, I decided to go serverless with a Firebase deployment and a Firestore database. This allowed for a quicker deployment process, as well as an easily integrated globally-accessible database of user scores. 
@@ -82,10 +88,10 @@ The Backend for this project started with a Node and Express server, as well as 
 This project was managed using a simplified git workflow. After the first deployment, new features were created on new branches that were pulled in once completed. 
 ![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitViz.png)
 
-Additionally, I managed tickets using github projects.
+Additionally, I managed tickets using Github Projects.
 ![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitFlow.png)
 
-I also use the standard js linter for the first time. For the most part I like it, but I'm on the fence about the lack of semicolons. 
+I also use the standard js linter for the first time. For the most part, I like it, but I'm on the fence about the lack of semicolons. 
 
 # Coming Soon
 With a little more time, here's what I would have added/completed:
@@ -99,11 +105,10 @@ With a little more time, here's what I would have added/completed:
 - Browser support for Chrome and Firefox. Safari works minus some features. 
 
 # Get started
-
 Take the following steps to run the app on your local machine, you will need to have the following:
 - NPM
 - Firebase CLI (available as an [NPM package](https://www.npmjs.com/package/firebase-tools))
-- You will need to create your own Firestore document database, [this](https://sebhastian.com/react-firestore) guide was the most helpful for me
+- You will need to create your Firestore document database, [this](https://sebhastian.com/react-firestore) guide was the most helpful for me
 
 From terminal in the project folder:
 ```
