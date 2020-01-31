@@ -31,7 +31,6 @@ const Leaderboard = (props) => {
   }
 
   const leaderboardStyle = {
-    overflow: 'scroll',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
