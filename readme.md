@@ -78,10 +78,11 @@ For keyboard navigation, the [react-keyboard-event-handler](https://www.npmjs.co
 The Backend for this project started with a Node and Express server, as well as a database skeleton. After assessing the needs fo this project, I decided to go serverless with a Firebase deployment and a Firestore database. This allowed for a quicker deployment process, as well as an easily integrated globally-accessible database of user scores. 
 
 # Work Flow
-This project was managed using a simplified git workflow. After the first deployment, new features were created on new branches that were pulled in once completed. Additionally, I managed tickets using github projects. 
+This project was managed using a simplified git workflow. After the first deployment, new features were created on new branches that were pulled in once completed. 
+![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitViz.png)
 
-FIX
-![]()
+Additionally, I managed tickets using github projects.
+![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitFlow.png)
 
 # Coming Soon
 With a little more time, here's what I would have added/completed:
