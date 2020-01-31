@@ -3,6 +3,7 @@ import { db } from '../firebase.js'
 import Navbar from '../components/Navbar.jsx'
 import Button from '../components/Button.jsx'
 import ThemeContext from '../ThemeContext.jsx'
+import MenuHumaaans from '../components/MenuHumaaans.jsx'
 
 const Leaderboard = (props) => {
   const { theme } = useContext(ThemeContext)
@@ -18,12 +19,15 @@ const Leaderboard = (props) => {
   }
 
   const pageStyle = {
-    height: '100vh',
+    height: '90vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     textAlign: 'center'
 
+  }
+
+  const titleStyle = {
+    marginTop: '15vh'
   }
 
   const leaderboardStyle = {
@@ -35,12 +39,46 @@ const Leaderboard = (props) => {
     marginTop: '10vh'
   }
 
+  const humaaansPosition = {
+    width: '100vw',
+    position: 'fixed',
+    bottom: '42px'
+  }
+
+  const submitStyle = {
+    height: '80vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
+
+  const scoreFlex = {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '10vh',
+    width: '80vw',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  }
+
+  const submitFlex = {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '30vh',
+    width: '80vw',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  }
+
   /// STATE ///
   const [scores, setScores] = useState([])
   const [userName, setUserName] = useState('anon')
 
   const getScores = () => {
-    db.collection('scores').get()
+    db.collection('scores').orderBy('score', 'desc').get()
       .then(response => {
         console.log('db call')
         const data = response.docs.map(doc => doc.data())
@@ -68,16 +106,22 @@ const Leaderboard = (props) => {
     const userScore = props.location.state.score
     return (
       <div>
-        <div>
+        <div style={submitStyle}>
           <h1>Well Done!</h1>
-          <p>You've scored</p>
-          <h2>{userScore}</h2>
-          <p>points</p>
+          <div style={scoreFlex}>
+            <p>You've scored</p>
+            <h1>{userScore}</h1>
+            <p>points</p>
+          </div>
+          <div style={submitFlex}>
+            <p>Leave your initials and submit to the leaderbord:</p>
+            <input onChange={(e) => parseInput(e)} />
+            <Button text='Submit Score' onClick={() => submitScore(userScore)} />
+            <Button text='Leaderboard' onClick={() => getScores()} />
+          </div>
         </div>
-        <div>
-          <input onChange={(e) => parseInput(e)} />
-          <Button text='Submit Score' onClick={() => submitScore(userScore)} />
-          <Button text='Leaderboard' onClick={() => getScores()} />
+        <div style={humaaansPosition} >
+          <MenuHumaaans />
         </div>
         <Navbar history={props.history} />
       </div>
@@ -88,7 +132,7 @@ const Leaderboard = (props) => {
       <div>
         <div style={triangle} />
         <div style={pageStyle}>
-          <h2>High Scores</h2>
+          <h2 style={titleStyle}>High Scores</h2>
           <div style={leaderboardStyle}>
             <div>
               {
@@ -100,9 +144,11 @@ const Leaderboard = (props) => {
               }
             </div>
           </div>
+          <div style={humaaansPosition} >
+            <MenuHumaaans />
+          </div>
           <Navbar />
         </div>
-
       </div>
     )
   }
@@ -136,7 +182,7 @@ const ScoreRow = (props) => {
 const parseDate = (date) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const cDate = date.toDate()
-  const result = cDate.getDate() + '/' + months[cDate.getMonth()] + '/' + cDate.getYear()
+  const result = cDate.getDate() + '/' + months[cDate.getMonth()] + '/' + cDate.getFullYear()
   return result
 }
 

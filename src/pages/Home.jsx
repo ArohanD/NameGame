@@ -4,6 +4,7 @@ import ThemeContext from '../ThemeContext.jsx'
 import Button from '../components/Button.jsx'
 import Navbar from '../components/Navbar.jsx'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
+import MenuHumaaans from '../components/MenuHumaaans.jsx'
 
 const Home = (props) => {
   const { theme } = useContext(ThemeContext)
@@ -101,19 +102,23 @@ const Home = (props) => {
         <Link to='/WhoIs'>
           <Button
             text='Play'
-            highlight={interactionIndex === 0} />
+            highlight={interactionIndex === 0}
+          />
         </Link>
         <Link to='/Leaderboard'>
           <Button
             text='Leaderboard'
-            highlight={interactionIndex === 1} />
+            highlight={interactionIndex === 1}
+          />
         </Link>
         <Link to='/'>
           <Button
             text='Flashcards'
-            highlight={interactionIndex === 2} />
+            highlight={interactionIndex === 2}
+          />
         </Link>
       </div>
+      <MenuHumaaans />
       <Navbar history={props.history} />
     </div>
   )
