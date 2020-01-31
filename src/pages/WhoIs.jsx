@@ -87,10 +87,8 @@ const WhoIs = (props) => {
 
   const checkResponse = (id) => {
     if (id === currentEmployeeId) {
-      console.log('correct')
       setScore(score + timeLeft)
     } else {
-      console.log('incorrect')
       setScore(score - 5)
     }
     runGame()

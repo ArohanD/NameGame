@@ -114,7 +114,8 @@ const Profile = (props) => {
     width: '100%',
     borderRadius: '15%',
     objectFit: 'cover',
-    opacity: opacity + '%'
+    opacity: opacity + '%',
+    transition: 'opacity 1s linear'
   }
 
   const profile = props.person
