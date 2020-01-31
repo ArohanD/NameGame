@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/Navbar.jsx'
 import ThemeContext from '../ThemeContext.jsx'
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 const WhoIs = (props) => {
   const { theme } = useContext(ThemeContext)
@@ -28,6 +29,7 @@ const WhoIs = (props) => {
   timeLeftRef.current = timeLeft
   const [currentEmployeeId, setCurrentEmployeeId] = useState(null)
   const [startGame, setStartGame] = useState(false)
+  const [selectedProfile, setSelectedProfile] = useState(0)
 
   const runGame = (e) => {
     const peopleQueue = JSON.parse(JSON.stringify(people))
@@ -95,13 +97,43 @@ const WhoIs = (props) => {
     }} />
   }
 
+  const keyPressHandler = (key, e) => {
+    console.log(key)
+    const nums = [1, 2, 3, 4, 5]
+    const directions = ['left', 'right']
+
+    if (nums.includes(Number(key))) {
+      setSelectedProfile(+key)
+    } else if (directions.includes(key)) {
+      if (key === 'left') {
+        if (selectedProfile === 0) {
+          setSelectedProfile(4)
+        } else {
+          setSelectedProfile(selectedProfile - 1)
+        }
+      } else if (key === 'right') {
+        if (selectedProfile === 4) {
+          setSelectedProfile(0)
+        } else {
+          setSelectedProfile(selectedProfile + 1)
+        }
+      }
+    }
+
+    if (key === 'space') {
+      checkResponse(currentFive[selectedProfile].id)
+    }
+  }
+
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
+      <KeyboardEventHandler handleKeys={['all']} onKeyEvent={(key, e) => keyPressHandler(key, e)} />
       <div>
         <div style={triangle} onClick={() => runGame()} />
         <h1 className='floating_header'>Who is?</h1>
       </div>
       <GameBox
+        selectedProfile={selectedProfile}
         currentEmployeeId={currentEmployeeId}
         people={currentFive}
         score={score}
@@ -172,8 +204,9 @@ const GameBox = (props) => {
       <div>
         <div style={boxStyle}>
           {
-            props.people.map(person => {
+            props.people.map((person, i) => {
               return <Profile
+                highlight={props.selectedProfile === i}
                 key={person.id}
                 person={person}
                 checkResponse={props.checkResponse}
@@ -195,7 +228,7 @@ const Profile = (props) => {
   const imageContainerStyle = {
     width: '100px',
     height: '30%',
-    border: `2px solid ${theme.primaryColor}`,
+    border: props.highlight ? `4px solid ${theme.secondaryColor}` : `2px solid ${theme.primaryColor}`,
     borderRadius: '15%',
     margin: '2px'
   }
