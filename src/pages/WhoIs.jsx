@@ -31,7 +31,7 @@ const WhoIs = (props) => {
   timeLeftRef.current = timeLeft // access current value regardless of context
   const [currentEmployeeId, setCurrentEmployeeId] = useState(null)
   const [startGame, setStartGame] = useState(false)
-  const [selectedProfile, setSelectedProfile] = useState(0)
+  const [selectedProfile, setSelectedProfile] = useState(-1)
 
   /// GAME METHODS ///
   const runGame = (e) => {
@@ -112,7 +112,7 @@ const WhoIs = (props) => {
       setSelectedProfile(+key)
     } else if (directions.includes(key)) {
       if (key === 'left') {
-        if (selectedProfile === 0) {
+        if (selectedProfile <= 0) {
           setSelectedProfile(4)
         } else {
           setSelectedProfile(selectedProfile - 1)
@@ -224,7 +224,7 @@ const GameBox = (props) => {
           }
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
         </div>
-        <p>Select the profile of your colleague named above.</p>
+        <p>Select the profile of your colleague named above. You can also use the LEFT and RIGHT arrow keys to make a selection, and SPACE to confirm</p>
         <ProgressBar
           round={props.round}
           score={props.score} />

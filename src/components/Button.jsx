@@ -5,12 +5,12 @@ const Button = (props) => {
   const { theme } = useContext(ThemeContext)
 
   const buttonStyle = { 
-    // RESET
+    // reset
     WebkitAppearance: 'none',
     MozAppearance: 'none',
 
-    // STYLE
-    border: 'none',
+    // new styling
+    border: props.highlight ? `2px solid ${theme.secondaryColor}` : 'none',
 
   }
 
