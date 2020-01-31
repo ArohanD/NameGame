@@ -91,7 +91,7 @@ This project was managed using a simplified git workflow. After the first deploy
 Additionally, I managed tickets using Github Projects.
 ![](https://raw.githubusercontent.com/ArohanD/NameGame/master/readmeMedia/gitFlow.png)
 
-I also use the standard js linter for the first time. For the most part, I like it, but I'm on the fence about the lack of semicolons. 
+I also used the standard js linter for the first time. For the most part, I like it, but I'm on the fence about the lack of semicolons. 
 
 # Coming Soon
 With a little more time, here's what I would have added/completed:
@@ -102,7 +102,7 @@ With a little more time, here's what I would have added/completed:
 # Known Bugs
 - Some links and ids in the provided data are missing, this can cause blank photos to show up or in the case of missing ids, incorrect fading.
 - At some resolutions, the timer will overlap with the last profile. Although I was able to solve this with a buffer profile previously, I chose to revert to find a more elegant solution. 
-- Browser support for Chrome and Firefox. Safari works minus some features. 
+- Chrome and Firefox are supported. Safari works minus some features. 
 
 # Get started
 Take the following steps to run the app on your local machine, you will need to have the following:
