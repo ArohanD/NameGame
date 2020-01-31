@@ -27,7 +27,7 @@ const Home = (props) => {
     flexDirection: 'column',
     gridColumn: '3 / 7',
     gridRow: '2 / 3',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center'
   }
 
@@ -109,12 +109,6 @@ const Home = (props) => {
           <Button
             text='Leaderboard'
             highlight={interactionIndex === 1}
-          />
-        </Link>
-        <Link to='/'>
-          <Button
-            text='Flashcards'
-            highlight={interactionIndex === 2}
           />
         </Link>
       </div>
