@@ -149,7 +149,7 @@ const WhoIs = (props) => {
         timeLeft={timeLeft}
         checkResponse={checkResponse.bind(this)}
       />
-      <Navbar />
+      <Navbar history={props.history} />
     </div>
   )
 }

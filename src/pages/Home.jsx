@@ -113,7 +113,7 @@ const Home = (props) => {
             highlight={interactionIndex === 2} />
         </Link>
       </div>
-      <Navbar />
+      <Navbar history={props.history} />
     </div>
   )
 }
