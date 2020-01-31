@@ -6,7 +6,7 @@ There were two additional asks for The Name Game, detailed below:
 - CSS libraries and preprocessors were not permitted, so everything is designed with css-in-js.
 - The app should accommodate accessibility features. As the game is inherently visual, I accommodated for two main groups:
   - Users who prefer not to use mouse input can navigate the entire app with their keyboards.
-  - Users with impaired vision can benefit from different themings, including dark mode and high-contrast.
+  - Users with impaired vision can benefit from different themeings, including dark mode and high-contrast.
 
 ## In Action
 
@@ -62,12 +62,12 @@ This app is best experienced on mobile devices, but it also has a fully featured
 
 #### CSS in JS over CSS, why? 
 At first, CSS in JS seems like a bad idea. It pollutes the inspector tool and adds lines to component files. I would argue the contrary, as CSS in JS allowed for some distinct advantages while building this app:
-- Dynamic properties - particularily for aceessibility, with the help of React's useContext hook, a global theming system was able to be set up just once at the top level. 
-- Code reuse without preproccessors - without preprocessors, consolidating CSS becomes more difficult, CSS is JS allowed for crerating and re-using style objects.
+- Dynamic properties - this particularly helped with accessibility. With the help of React's useContext hook, a global themeing system was able to be set up just once at the top level. 
+- Code reuse without preprocessors - without preprocessors, consolidating CSS becomes more difficult. CSS is JS allowed for creating and re-using style objects.
 - Granular animation control - I was able to set specific fades for different profiles as hints as I was able to tie opacity animations to props passed into each headshot. 
-- Easier to edit - No more scrolling to find the the correct class or id, or duplicating the id. The style for a specific component is located in the component's file. 
+- Easier to edit - No more scrolling to find or unnecessarily duplicating classes or ids. The style for a specific component is located in the component's file. 
 
-Why not a hybrid approach? I did try this but it gets messy with overwrites and I felt as if I was writing more code than neccessary.
+Why not a hybrid approach? I did try this but it gets messy with overwrites and I felt as if I was writing more code than necessary.
 
 #### Accessibility Integration and Testing
 The high contrast theme is close to meeting the highest specification according to the [WCAG 2.0 contrast formula](https://snook.ca/technical/colour_contrast/colour.html#fg=33FF33,bg=000000). Unfortunately I was unable to integrate font-resizing.
@@ -91,11 +91,11 @@ With a little more time, here's what I would have added/completed:
 
 # Known Bugs
 - Some links and ids in the provided data are missing, this can cause blank photos to show up or in the case of missing ids, incorrect fading.
-- At some resolutions, the timer will overlap with the last profile.Although I was able to solve this with a buffer profile previously, I chose to revert to find a more elegant solution. 
+- At some resolutions, the timer will overlap with the last profile. Although I was able to solve this with a buffer profile previously, I chose to revert to find a more elegant solution. 
 
 # Get started
 
-Take the following steps to run the app in your localhost, you will need to have the following:
+Take the following steps to run the app on your local machine, you will need to have the following:
 - NPM
 - Firebase CLI (available as an [NPM package](https://www.npmjs.com/package/firebase-tools))
 - You will need to create your own Firestore document database, [this](https://sebhastian.com/react-firestore) guide was the most helpful for me
