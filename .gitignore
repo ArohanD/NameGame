@@ -4,3 +4,4 @@ node_modules
 firebase-debug.log
 .firebaserc
 src/firebase.js
+dist/bundle.js
