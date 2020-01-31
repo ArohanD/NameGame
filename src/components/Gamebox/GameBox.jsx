@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ThemeContext from '../../ThemeContext.jsx'
 
 const GameBox = (props) => {
@@ -53,7 +53,13 @@ const GameBox = (props) => {
   }
 
   const currentEmployeeName = findEmployeeName()
+  const fadeTimes = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+  const [fadeOrder, setFadeOrder] = useState(fadeTimes)
+  useEffect(() => {
+    setFadeOrder(shuffleArray(fadeTimes))
+  }, [props.people])
 
+  let fadeIndex = -1
   return (
     <div style={gameboxContainerStyle}>
       <h2>{currentEmployeeName || 'Loading...'}</h2>
@@ -61,19 +67,22 @@ const GameBox = (props) => {
         <div style={boxStyle}>
           {
             props.people.map((person, i) => {
+              if (props.currentEmployeeId !== person.id) fadeIndex++
               return (
                 <Profile
                   highlight={props.selectedProfile === i}
                   key={person.id}
                   person={person}
                   checkResponse={props.checkResponse}
+                  fadeAt={props.currentEmployeeId === person.id ? null : fadeOrder[fadeIndex]}
+                  timeLeft={props.timeLeft}
                 />
               )
             })
           }
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
         </div>
-        <p>Select the profile of your colleague named above. You can also use the LEFT and RIGHT arrow keys to make a selection, and SPACE to confirm</p>
+        <p>Select the profile of your colleague named above. You can also use the LEFT and RIGHT arrow keys to make a selection, and SPACE to confirm.</p>
         <ProgressBar
           round={props.round}
           score={props.score}
@@ -87,6 +96,11 @@ const Profile = (props) => {
   const { theme } = useContext(ThemeContext)
 
   /// STYLE ///
+  const [opacity, setOpacity] = useState(100)
+  useEffect(() => {
+    if (props.fadeAt && props.fadeAt.includes(props.timeLeft)) setOpacity(opacity - 33)
+  }, [props.timeLeft])
+
   const imageContainerStyle = {
     width: '100px',
     height: '30%',
@@ -99,7 +113,8 @@ const Profile = (props) => {
     height: '100%',
     width: '100%',
     borderRadius: '15%',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    opacity: opacity + '%'
   }
 
   const profile = props.person
@@ -139,6 +154,15 @@ const ProgressBar = (props) => {
       </div>
     </div>
   )
+}
+
+const shuffleArray = (array) => {
+  const copy = array.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]]
+  }
+  return copy
 }
 
 export default GameBox
