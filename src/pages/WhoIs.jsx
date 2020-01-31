@@ -8,6 +8,7 @@ import KeyboardEventHandler from 'react-keyboard-event-handler'
 const WhoIs = (props) => {
   const { theme } = useContext(ThemeContext)
 
+  /// STYLING ///
   const whoIsPageStyle = {
     backgroundColor: theme.baseColor
   }
@@ -20,17 +21,19 @@ const WhoIs = (props) => {
     borderRight: '100vw solid transparent'
   }
 
+  /// STATE ///
   const [people, setPeople] = useState([])
   const [currentFive, setCurrentFive] = useState([])
   const [score, setScore] = useState(0)
   const [round, setRound] = useState(0)
   const [timeLeft, setTimeLeft] = useState(15)
   const timeLeftRef = useRef(timeLeft)
-  timeLeftRef.current = timeLeft
+  timeLeftRef.current = timeLeft // access current value regardless of context
   const [currentEmployeeId, setCurrentEmployeeId] = useState(null)
   const [startGame, setStartGame] = useState(false)
   const [selectedProfile, setSelectedProfile] = useState(0)
 
+  /// GAME METHODS ///
   const runGame = (e) => {
     const peopleQueue = JSON.parse(JSON.stringify(people))
     setCurrentFive(people.slice(0, 5))
@@ -47,6 +50,7 @@ const WhoIs = (props) => {
     }, 1000)
   }
 
+  // Advance games if no selection made
   useEffect(() => {
     if (timeLeft === 0) {
       runGame()
@@ -54,6 +58,7 @@ const WhoIs = (props) => {
     }
   }, [timeLeft])
 
+  // Select correct answer from choices
   useEffect(() => {
     if (currentFive.length > 0) {
       const randomIndex = Math.floor(Math.random() * 5)
@@ -62,6 +67,7 @@ const WhoIs = (props) => {
     }
   }, [currentFive])
 
+  // Load Data
   useEffect(() => {
     axios.get('https://willowtreeapps.com/api/v1.0/profiles')
       .then(({ data }) => {
@@ -91,14 +97,14 @@ const WhoIs = (props) => {
 
   if (!people) return (<div>Loading...</div>)
   if (round === 15) {
-    return <Redirect push to={{
-      pathname: '/Leaderboard',
-      state: { score: score }
-    }} />
+    return <Redirect
+      push to={{
+        pathname: '/Leaderboard',
+        state: { score: score }
+      }} />
   }
 
   const keyPressHandler = (key, e) => {
-    console.log(key)
     const nums = [1, 2, 3, 4, 5]
     const directions = ['left', 'right']
 
@@ -127,7 +133,9 @@ const WhoIs = (props) => {
 
   return (
     <div id='WhoIs_grid' style={whoIsPageStyle}>
-      <KeyboardEventHandler handleKeys={['all']} onKeyEvent={(key, e) => keyPressHandler(key, e)} />
+      <KeyboardEventHandler
+        handleKeys={['all']}
+        onKeyEvent={(key, e) => keyPressHandler(key, e)} />
       <div>
         <div style={triangle} onClick={() => runGame()} />
         <h1 className='floating_header'>Who is?</h1>
@@ -149,6 +157,7 @@ const WhoIs = (props) => {
 const GameBox = (props) => {
   const { theme } = useContext(ThemeContext)
 
+  /// STYLE ///
   const gameboxContainerStyle = {
     justifySelf: 'center',
     alignSelf: 'center',
@@ -216,7 +225,9 @@ const GameBox = (props) => {
           <div style={clockStyle}>{props.timeLeft + 's'}</div>
         </div>
         <p>Select the profile of your colleague named above.</p>
-        <ProgressBar round={props.round} score={props.score} />
+        <ProgressBar
+          round={props.round}
+          score={props.score} />
       </div>
     </div>
   )
@@ -225,6 +236,7 @@ const GameBox = (props) => {
 const Profile = (props) => {
   const { theme } = useContext(ThemeContext)
 
+  /// STYLE ///
   const imageContainerStyle = {
     width: '100px',
     height: '30%',
@@ -255,6 +267,8 @@ const Profile = (props) => {
 }
 
 const ProgressBar = (props) => {
+
+  /// STYLE ///
   const progressContainer = {
     margin: '20px',
     width: '80vw',
