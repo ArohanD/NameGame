@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import ThemeContext from '../../ThemeContext.jsx'
 
 const GameBox = (props) => {
-  console.log(window.innerWidth)
   const { theme } = useContext(ThemeContext)
 
   /// STYLE ///
