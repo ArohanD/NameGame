@@ -125,7 +125,7 @@ const Profile = (props) => {
   const profile = props.person
 
   return (
-    <div key={profile.id} style={imageContainerStyle}>
+    <div key={profile.id} style={imageContainerStyle} className='cyProfile'>
       {
         profile.id === 0 ? null
           : <img

@@ -59,7 +59,7 @@ const Navbar = (props) => {
             />
           </Link>
         </div>
-        <div tabindex='0' onClick={toggleTheme}>
+        <div className='cyTheme' tabindex='0' onClick={toggleTheme}>
           <Icon
             icon={textSize}
             height='2.2em'

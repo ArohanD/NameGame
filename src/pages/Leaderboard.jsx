@@ -141,7 +141,7 @@ const Leaderboard = (props) => {
         <div style={triangle} />
         <div style={pageStyle}>
           <h2 style={titleStyle}>High Scores</h2>
-          <div style={leaderboardStyle}>
+          <div className="cyLeaderBoard" style={leaderboardStyle}>
             <div>
               {
                 scores.map((entry, i) => {

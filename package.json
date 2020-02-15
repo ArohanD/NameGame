@@ -4,7 +4,7 @@
   "description": "donuts, cats, react, and such",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx cypress open",
     "compile": "webpack --watch",
     "start": "firebase serve --port=6263"
   },
@@ -19,6 +19,7 @@
     "@iconify/react": "^1.1.1",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
+    "cypress": "^4.0.1",
     "react": "^16.8.6",
     "standard": "^14.3.1",
     "webpack": "^4.38.0",
