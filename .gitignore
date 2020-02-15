@@ -5,3 +5,5 @@ firebase-debug.log
 .firebaserc
 src/firebase.js
 dist/bundle.js
+cypress/videos
+
