@@ -16,25 +16,17 @@ Object.keys(Humaaans).forEach(key => {
 })
 
 const MenuHumaaans = (props) => {
-  const humaaansStyle = {
-    gridRow: '3 / 4',
-    gridColumn: '1 / 9',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between'
-  }
 
   return (
-    <div style={humaaansStyle}>
-      <div style={humaaansStyle}>
+    <div className='humaaans'>
+      <div className='humaaans'>
         {standing[generateRandomIndex(standing)]}
-        <div style={{ transform: 'scale(-1, 1)' }}>
+        <div className='mirror'>
           {standing[generateRandomIndex(standing)]}
         </div>
       </div>
-      <div style={humaaansStyle}>
-        <div style={{ transform: 'scale(-1, 1)' }}>
+      <div className='humaaans'>
+        <div className='mirror'>
           {sitting[generateRandomIndex(sitting)]}
         </div>
         {sitting[generateRandomIndex(sitting)]}
@@ -43,7 +35,7 @@ const MenuHumaaans = (props) => {
   )
 }
 
-function generateRandomIndex (array) {
+function generateRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
 }
 

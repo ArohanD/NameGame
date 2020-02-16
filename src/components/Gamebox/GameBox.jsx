@@ -4,44 +4,9 @@ import ThemeContext from '../../ThemeContext.jsx'
 const GameBox = (props) => {
   const { theme } = useContext(ThemeContext)
 
-  /// STYLE ///
-  const gameboxContainerStyle = {
-    justifySelf: 'center',
-    alignSelf: 'center',
-
-    width: '85%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center'
-  }
-
-  const boxStyle = {
-    border: `4px solid ${theme.primaryColor}`,
-    height: '40vh',
-    margin: '20px auto',
-
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    alignContent: 'space-around',
-
-    position: 'relative'
-  }
-
   const clockStyle = {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    minWidth: '75px',
-    height: '25%',
-    backgroundColor: theme.primaryColor,
-    color: theme.name === 'high_contrast' ? '#000000' : '#F6F6F6',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '2em'
+    '--backgroundColor': theme.primaryColor,
+    '--textColor': theme.name === 'high_contrast' ? '#000000' : '#F6F6F6',
   }
 
   const findEmployeeName = () => {
@@ -61,10 +26,10 @@ const GameBox = (props) => {
 
   let fadeIndex = -1
   return (
-    <div style={gameboxContainerStyle}>
+    <div id='gamebox'>
       <h2>{currentEmployeeName || 'Loading...'}</h2>
       <div>
-        <div style={boxStyle}>
+        <div id='profileHolder' style={{ '--borderColor': theme.primaryColor }}>
           {
             props.people.map((person, i) => {
               if (props.currentEmployeeId !== person.id) fadeIndex++
@@ -80,7 +45,7 @@ const GameBox = (props) => {
               )
             })
           }
-          <div style={clockStyle}>{props.timeLeft + 's'}</div>
+          <div id='gameClock' style={clockStyle}>{props.timeLeft + 's'}</div>
         </div>
         <p>Select the profile of your colleague named above. You can also use the LEFT and RIGHT arrow keys to make a selection, and SPACE to confirm.</p>
         <ProgressBar
