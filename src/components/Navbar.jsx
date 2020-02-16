@@ -50,7 +50,7 @@ const Navbar = (props) => {
         onKeyEvent={(key, e) => keyPressHandler(key)}
       />
       <div style={iconsStyle}>
-        <div tabindex='0'>
+        <div tabIndex='0'>
           <Link to='/'>
             <Icon
               icon={menuIcon}
@@ -59,7 +59,7 @@ const Navbar = (props) => {
             />
           </Link>
         </div>
-        <div className='cyTheme' tabindex='0' onClick={toggleTheme}>
+        <div className='cyTheme' tabIndex='0' onClick={toggleTheme}>
           <Icon
             icon={textSize}
             height='2.2em'
