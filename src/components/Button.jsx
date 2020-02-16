@@ -23,7 +23,7 @@ const Button = (props) => {
 
   return (
     <button
-      tabindex='0'
+      tabIndex='0'
       style={buttonStyle}
       onClick={props.onClick}
     >
