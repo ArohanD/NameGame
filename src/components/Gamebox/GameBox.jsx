@@ -6,7 +6,7 @@ const GameBox = (props) => {
 
   const clockStyle = {
     '--backgroundColor': theme.primaryColor,
-    '--textColor': theme.name === 'high_contrast' ? '#000000' : '#F6F6F6',
+    '--textColor': theme.name === 'high_contrast' ? '#000000' : '#F6F6F6'
   }
 
   const findEmployeeName = () => {
@@ -36,6 +36,7 @@ const GameBox = (props) => {
               return (
                 <Profile
                   highlight={props.selectedProfile === i}
+                  last={i === props.people.length - 1}
                   key={person.id}
                   person={person}
                   checkResponse={props.checkResponse}
@@ -59,6 +60,7 @@ const GameBox = (props) => {
 
 const Profile = (props) => {
   const { theme } = useContext(ThemeContext)
+  const profile = props.person
 
   /// STYLE ///
   const [opacity, setOpacity] = useState(100)
@@ -66,55 +68,32 @@ const Profile = (props) => {
     if (props.fadeAt && props.fadeAt.includes(props.timeLeft)) setOpacity(opacity - 33)
   }, [props.timeLeft])
 
-  const wWidth = window.innerWidth
-  const sideLength = wWidth > 900 ? wWidth / 7 : wWidth / 6
   const imageContainerStyle = {
-    width: sideLength,
-    height: sideLength,
-    minWidth: '100px',
-    minHeight: '30%',
-    border: props.highlight ? `4px solid ${theme.secondaryColor}` : `2px solid ${theme.primaryColor}`,
-    borderRadius: '15%',
-    margin: '2px'
+    border: props.highlight ? `4px solid ${theme.secondaryColor}` : `2px solid ${theme.primaryColor}`
   }
-
-  const imageStyle = {
-    height: '100%',
-    width: '100%',
-    borderRadius: '15%',
-    objectFit: 'cover',
-    opacity: opacity + '%',
-    transition: 'opacity 1s linear'
-  }
-
-  const profile = props.person
 
   return (
-    <div key={profile.id} style={imageContainerStyle} className='cyProfile'>
+    <div
+      key={profile.id}
+      style={imageContainerStyle}
+      className={props.last ? 'profile lastProfile cyProfile' : 'profile cyProfile'}
+    >
       {
         profile.id === 0 ? null
           : <img
-            tabindex='0'
+            tabIndex='0'
             src={profile.headshot.url}
-            style={imageStyle}
+            style={{ '--opacityMod': opacity + '%' }}
             onClick={() => props.checkResponse(profile.id)}
-            />
+          />
       }
     </div>
   )
 }
 
 const ProgressBar = (props) => {
-  /// STYLE ///
-  const progressContainer = {
-    margin: '20px',
-    width: '80vw',
-    display: 'flex',
-    justifyContent: 'space-around'
-  }
-
   return (
-    <div style={progressContainer}>
+    <div id='progressItems'>
       <div>
         <h2>{props.score}</h2>
         <p>points</p>

@@ -110,3 +110,46 @@ button {
   font-size: 2em;
 }
 
+.profile {
+  width: 30%;
+  height: auto;
+  border-radius: 15%;
+  margin: 2px;
+}
+
+.lastProfile {
+  margin-right: 33%;
+}
+
+@media screen and (min-width: 560px) {
+  .profile {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .profile {
+    width: 15%;
+  }
+
+  .lastProfile {
+    margin-right: 0;
+  }
+}
+
+.profile img {
+  height: 100%;
+  width: 100%;
+  border-radius: 15%;
+  object-fit: cover;
+  --opacityMod: 100%;
+  opacity: var(--opacityMod);
+  transition: opacity 1s linear;
+}
+
+#progressItems {
+  margin: 20px;
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+}
